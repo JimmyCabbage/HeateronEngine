@@ -1,40 +1,43 @@
 // Sample code showing how to create a modern OpenGL window and rendering context on Win32.
-#include <windows.h>
-#include "HeateronEngineDLL.h"
-#include <gl/gl.h>
-#include <stdbool.h>
 
-#pragma comment(lib, "opengl32.lib")
+#include "HeateronEngineDLL.h"
+
+#include <windows.h>
+#include <exception>
 
 int WINAPI WinMain(_In_ HINSTANCE inst, _In_opt_ HINSTANCE prev, _In_ LPSTR cmd_line, _In_ int show)
 {
 	auto window = CreateMainWindow();
 
-	window->Create();
-
-	ShowWindow(window->Window(), show);
-	UpdateWindow(window->Window());
-
-	bool running = true;
-	while (running)
+	try
 	{
+		window->Create();
+
+		ShowWindow(window->Window(), show);
+		UpdateWindow(window->Window());
+
+		bool running = true;
 		MSG msg;
-		while (PeekMessageA(&msg, 0, 0, 0, PM_REMOVE))
+		while (running)
 		{
-			if (msg.message == WM_QUIT)
+			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 			{
-				running = false;
-			}
-			else
-			{
+				if (msg.message == WM_QUIT)
+				{
+					running = false;
+				}
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
+			window->Render();
 		}
-		window->Render();
-	}
 
-	DestroyMainWindow(window);
+		DestroyMainWindow(window);
+	}
+	catch (const std::exception& exp)
+	{
+		MessageBoxA(nullptr, exp.what(), "Error!", MB_OK | MB_ICONEXCLAMATION);
+	}
 
 	return 0;
 }

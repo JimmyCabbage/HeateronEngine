@@ -3,6 +3,10 @@
 #include <glad/glad.h>
 #include <glad/glad_wgl.h>
 
+#include <exception>
+#include <stdexcept>
+#include <memory>
+
 //Implements the MainWindow Class (apart from the Render, Create, HandleMessage function)
 
 LRESULT CALLBACK MainWindow::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -154,7 +158,7 @@ HGLRC MainWindow::init_opengl(HDC& real_dc)
 	// Specify that we want to create an OpenGL 3.3 core profile context
 	int gl33_attribs[] =
 	{
-		WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
+		WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
 		WGL_CONTEXT_MINOR_VERSION_ARB, 3,
 		WGL_CONTEXT_PROFILE_MASK_ARB,  WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
 		0,
@@ -188,6 +192,12 @@ MainWindow::MainWindow()
 
 void MainWindow::fatal_error(const wchar_t* msg)
 {
-	MessageBox(NULL, msg, L"Error", MB_OK | MB_ICONEXCLAMATION);
-	exit(EXIT_FAILURE);
+	size_t msglen = wcslen(msg);
+	std::unique_ptr<char> tmp(new char(msglen));
+	sprintf_s(tmp.get(), msglen, "%ls", msg);
+	throw std::runtime_error(tmp.get());
+}
+void MainWindow::fatal_error(const char* msg)
+{
+	throw std::runtime_error(msg);
 }

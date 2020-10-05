@@ -5,6 +5,7 @@
 
 BOOL MainWindow::Create()
 {
+	//create the window
 	WNDCLASS window_class = {};
 	window_class.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	window_class.lpfnWndProc = WindowProc;
@@ -39,7 +40,10 @@ BOOL MainWindow::Create()
 	m_gldc = GetDC(m_hwnd);
 	m_glrc = init_opengl(m_gldc);
 
-	const char* vertexShaderSource = "#version 330 core\n"
+	//create shader program for OpenGL
+	//shader code
+	const char* vertexShaderSource =
+		"#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
 		"out vec3 ourColor;\n"
@@ -49,7 +53,8 @@ BOOL MainWindow::Create()
 		"   ourColor = aColor;\n"
 		"}\0";
 
-	const char* fragmentShaderSource = "#version 330 core\n"
+	const char* fragmentShaderSource =
+		"#version 330 core\n"
 		"out vec4 FragColor;\n"
 		"in vec3 ourColor;\n"
 		"void main()\n"
@@ -70,9 +75,11 @@ BOOL MainWindow::Create()
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
 
+	//delete the shaders because they have been linked in
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	//create the Vertex Attribute Object, and the Vertex Buffer Object to prepare for drawing
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 

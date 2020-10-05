@@ -39,6 +39,7 @@ public:
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	void fatal_error(const wchar_t* msg);
+	void fatal_error(const char* msg);
 };
 
 #endif

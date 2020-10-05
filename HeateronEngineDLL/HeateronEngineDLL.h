@@ -27,6 +27,7 @@ public:
 	virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
 
 	virtual void fatal_error(const wchar_t* msg) = 0;
+	virtual void fatal_error(const char* msg) = 0;
 };
 
 extern "C" HEATERONENGINE_API IMainWindow* CreateMainWindow();

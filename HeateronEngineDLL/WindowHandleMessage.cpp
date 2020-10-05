@@ -9,6 +9,7 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_SIZE:
 	{
+		//resize the OpenGL viewport depending on the window size
 		WORD width = LOWORD(lParam);
 		WORD height = HIWORD(lParam);
 		glViewport(0, 0, (GLsizei)width, (GLsizei)height);
@@ -20,6 +21,7 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		break;
 	default:
+		//default protocal
 		return DefWindowProc(m_hwnd, uMsg, wParam, lParam);
 	} //switch (uMsg)
 	return TRUE;
