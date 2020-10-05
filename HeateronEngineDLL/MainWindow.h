@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "HeateronEngineDLL.h"
+#include "Shader.h"
 
 constexpr float vertices[] =
 {
@@ -13,7 +14,7 @@ constexpr float vertices[] =
 class MainWindow : public IMainWindow
 {
 	unsigned int VBO, VAO;
-	int shaderProgram;
+	Shader shaderProgram;
 
 	HWND m_hwnd;
 	HDC m_gldc;

@@ -186,7 +186,7 @@ HWND MainWindow::Window() const
 
 	//constructor, initialize window handle to nullptr
 MainWindow::MainWindow()
-	: m_hwnd(nullptr), m_gldc(nullptr), m_glrc(nullptr)
+	: m_hwnd(nullptr), m_gldc(nullptr), m_glrc(nullptr), VAO(0), VBO(0)
 {
 }
 

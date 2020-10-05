@@ -53,8 +53,7 @@ BOOL MainWindow::Create()
 		"   ourColor = aColor;\n"
 		"}\0";
 
-	const char* fragmentShaderSource =
-		"#version 330 core\n"
+	const char* fragmentShaderSource = "#version 330 core\n"
 		"out vec4 FragColor;\n"
 		"in vec3 ourColor;\n"
 		"void main()\n"
@@ -62,22 +61,7 @@ BOOL MainWindow::Create()
 		"   FragColor = vec4(ourColor, 1.0f);\n"
 		"}\n\0";
 
-	int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-	glCompileShader(vertexShader);
-
-	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-	glCompileShader(fragmentShader);
-
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	//delete the shaders because they have been linked in
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	shaderProgram = Shader(vertexShaderSource, fragmentShaderSource, true);
 
 	//create the Vertex Attribute Object, and the Vertex Buffer Object to prepare for drawing
 	glGenVertexArrays(1, &VAO);
@@ -95,7 +79,7 @@ BOOL MainWindow::Create()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	glUseProgram(shaderProgram);
+	shaderProgram.use();
 
 	return true;
 }
