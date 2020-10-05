@@ -168,6 +168,10 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="glad_wgl.c" />
     <ClCompile Include="HeateronEngineDLL.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="WindowCreate.cpp" />
+    <ClCompile Include="WindowHandleMessage.cpp" />
+    <ClCompile Include="WindowRender.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
