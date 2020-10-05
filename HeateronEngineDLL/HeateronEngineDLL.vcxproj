@@ -161,14 +161,13 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="HeateronEngineDLL.h" />
+    <ClInclude Include="MainWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="errorhandling.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="glad_wgl.c" />
     <ClCompile Include="HeateronEngineDLL.cpp" />
-    <ClCompile Include="initopengl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

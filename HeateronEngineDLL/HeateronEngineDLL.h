@@ -1,6 +1,10 @@
 #ifndef HEATERONENGINEDLL_H
 #define HEATERONENGINEDLL_H
 
+#ifndef UNICODE
+#define UNICODE
+#endif
+
 #ifdef HEATERONENGINEDLL_EXPORTS
 #define HEATERONENGINE_API __declspec(dllexport)
 #define GLAD_GLAPI_EXPORT_BUILD
@@ -9,10 +13,6 @@
 #endif
 
 #include <Windows.h>
-
-extern "C" HEATERONENGINE_API void fatal_error(const char* msg);
-extern "C" HEATERONENGINE_API void init_opengl_extensions(void);
-extern "C" HEATERONENGINE_API HGLRC init_opengl(HDC& real_dc);
 
 class IMainWindow
 {
@@ -25,6 +25,8 @@ public:
 	virtual void Render() = 0;
 
 	virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+
+	virtual void fatal_error(const wchar_t* msg) = 0;
 };
 
 extern "C" HEATERONENGINE_API IMainWindow* CreateMainWindow();

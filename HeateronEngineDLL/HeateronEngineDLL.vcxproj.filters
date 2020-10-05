@@ -21,6 +21,9 @@
     <ClInclude Include="HeateronEngineDLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -33,12 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glad_wgl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="errorhandling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="initopengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
