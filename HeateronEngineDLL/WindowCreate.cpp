@@ -4,6 +4,8 @@
 
 BOOL MainWindow::Create()
 {
+	start_time = Clock::now();
+
 	//create the window
 	WNDCLASS window_class = {};
 	window_class.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -80,6 +82,8 @@ BOOL MainWindow::Create()
 	glEnableVertexAttribArray(1);
 
 	shaderProgram.use();
+
+	glEnable(GL_DEPTH_TEST);
 
 	return true;
 }

@@ -3,6 +3,10 @@
 #include "HeateronEngineDLL.h"
 #include "Shader.h"
 
+#include <chrono>
+
+typedef std::chrono::high_resolution_clock Clock;
+
 constexpr float vertices[] =
 {
 	// positions         // colors
@@ -13,6 +17,9 @@ constexpr float vertices[] =
 
 class MainWindow : public IMainWindow
 {
+	//start of program
+	std::chrono::high_resolution_clock::time_point start_time;
+
 	WORD width, height;
 	unsigned int VBO, VAO;
 	Shader shaderProgram;
