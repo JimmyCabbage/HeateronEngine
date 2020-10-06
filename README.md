@@ -1,3 +1,3 @@
 # HeateronEngine
 
-An excercise I tried using WinAPI to run OpenGL
+An exercise I tried using WinAPI to run OpenGL
