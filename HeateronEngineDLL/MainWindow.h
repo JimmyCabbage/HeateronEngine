@@ -13,6 +13,7 @@ constexpr float vertices[] =
 
 class MainWindow : public IMainWindow
 {
+	WORD width, height;
 	unsigned int VBO, VAO;
 	Shader shaderProgram;
 

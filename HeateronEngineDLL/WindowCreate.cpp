@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 
 #include <glad/glad.h>
-#include <glad/glad_wgl.h>
 
 BOOL MainWindow::Create()
 {
@@ -26,7 +25,7 @@ BOOL MainWindow::Create()
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		800, 600,
+		1024, 768,
 		0,
 		0,
 		GetModuleHandle(nullptr),
@@ -47,9 +46,10 @@ BOOL MainWindow::Create()
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
 		"out vec3 ourColor;\n"
+		"uniform mat4 model, view, projection;"
 		"void main()\n"
 		"{\n"
-		"   gl_Position = vec4(aPos, 1.0);\n"
+		"   gl_Position = projection * view * model * vec4(aPos, 1.0);\n"
 		"   ourColor = aColor;\n"
 		"}\0";
 

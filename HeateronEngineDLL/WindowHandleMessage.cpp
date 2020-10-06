@@ -10,8 +10,8 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_SIZE:
 	{
 		//resize the OpenGL viewport depending on the window size
-		WORD width = LOWORD(lParam);
-		WORD height = HIWORD(lParam);
+		width = LOWORD(lParam);
+		height = HIWORD(lParam);
 		glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 	}
 	break;
