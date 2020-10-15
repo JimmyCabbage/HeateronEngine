@@ -20,7 +20,7 @@ class MainWindow : public IMainWindow
 	//start of program
 	std::chrono::high_resolution_clock::time_point start_time;
 
-	WORD width, height;
+	WORD cwidth, cheight, wwidth, wheight;
 	unsigned int VBO, VAO;
 	Shader shaderProgram;
 
@@ -33,6 +33,8 @@ class MainWindow : public IMainWindow
 	void init_opengl_extensions(void);
 
 	HGLRC init_opengl(HDC& real_dc);
+
+	void GetSize(int& width, int& height);
 
 public:
 	BOOL Create();
@@ -47,8 +49,8 @@ public:
 
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-	void fatal_error(const wchar_t* msg);
-	void fatal_error(const char* msg);
+	static void fatal_error(const wchar_t* msg);
+	static void fatal_error(const char* msg);
 };
 
 #endif

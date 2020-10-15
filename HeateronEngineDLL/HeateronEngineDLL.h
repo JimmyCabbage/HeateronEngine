@@ -25,13 +25,9 @@ public:
 	virtual void Render() = 0;
 
 	virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
-
-	virtual void fatal_error(const wchar_t* msg) = 0;
-	virtual void fatal_error(const char* msg) = 0;
 };
 
 extern "C" HEATERONENGINE_API IMainWindow* CreateMainWindow();
 extern "C" HEATERONENGINE_API void DestroyMainWindow(IMainWindow* window);
-
 
 #endif

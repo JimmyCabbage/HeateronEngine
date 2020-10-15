@@ -6,12 +6,13 @@
 
 class Shader
 {
+	void checkCompileErrors(unsigned int shader, const std::string& type);
 public:
 	//program ID
 	unsigned int ID;
 
 	//constructor reads and builds the shader, or optionally, data
-	Shader(const char* vertexPath, const char* fragmentPath, const bool data = false);
+	Shader(const char* vertexPath, const char* fragmentPath);
 	//default constructor
 	Shader();
 

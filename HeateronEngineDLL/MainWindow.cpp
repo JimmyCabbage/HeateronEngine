@@ -186,18 +186,33 @@ HWND MainWindow::Window() const
 
 	//constructor, initialize window handle to nullptr
 MainWindow::MainWindow()
-	: m_hwnd(nullptr), m_gldc(nullptr), m_glrc(nullptr), VAO(0), VBO(0)
+	: m_hwnd(nullptr), m_gldc(nullptr), m_glrc(nullptr), VAO(0), VBO(0),
+	cheight(0), cwidth(0), wwidth(0), wheight(0)
 {
 }
 
 void MainWindow::fatal_error(const wchar_t* msg)
 {
 	size_t msglen = wcslen(msg);
-	std::unique_ptr<char> tmp(new char(msglen));
+	std::unique_ptr<char> tmp(new char[msglen]);
 	sprintf_s(tmp.get(), msglen, "%ls", msg);
 	throw std::runtime_error(tmp.get());
 }
 void MainWindow::fatal_error(const char* msg)
 {
 	throw std::runtime_error(msg);
+}
+
+void MainWindow::GetSize(int& width, int& height)
+{
+	RECT rect;
+	if (GetWindowRect(m_hwnd, &rect))
+	{
+		width = rect.right - rect.left;
+		height = rect.bottom - rect.top;
+	}
+	else
+	{
+		fatal_error("Could not call GetWindowRect");
+	}
 }

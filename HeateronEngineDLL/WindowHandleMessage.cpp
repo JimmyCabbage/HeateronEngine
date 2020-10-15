@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 
 #include <glad/glad.h>
-#include <glad/glad_wgl.h>
 
 LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -10,11 +9,15 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_SIZE:
 	{
 		//resize the OpenGL viewport depending on the window size
-		width = LOWORD(lParam);
-		height = HIWORD(lParam);
-		glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+		cwidth = LOWORD(lParam);
+		cheight = HIWORD(lParam);
+		//since lParam is the client size, and glViewport needs the window size
+		int width, height;
+		GetSize(width, height);
+		wwidth = width;
+		wheight = height;
+		glViewport(0, 0, (GLsizei)cwidth, (GLsizei)cheight);
 	}
-	break;
 	break;
 	case WM_CLOSE:
 	case WM_DESTROY:

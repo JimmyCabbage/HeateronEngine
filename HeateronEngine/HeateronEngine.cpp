@@ -1,11 +1,9 @@
-// Sample code showing how to create a modern OpenGL window and rendering context on Win32.
-
 #include "HeateronEngineDLL.h"
 
 #include <windows.h>
 #include <exception>
 
-int WINAPI WinMain(_In_ HINSTANCE inst, _In_opt_ HINSTANCE prev, _In_ LPSTR cmd_line, _In_ int show)
+int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR cmd_line, _In_ int nCmdShow)
 {
 	auto window = CreateMainWindow();
 
@@ -13,7 +11,7 @@ int WINAPI WinMain(_In_ HINSTANCE inst, _In_opt_ HINSTANCE prev, _In_ LPSTR cmd_
 	{
 		window->Create();
 
-		ShowWindow(window->Window(), show);
+		ShowWindow(window->Window(), nCmdShow);
 		UpdateWindow(window->Window());
 
 		bool running = true;
